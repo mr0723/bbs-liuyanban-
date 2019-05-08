@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .content{
+            width: 600px;
+            height: 400px;
+            margin:0 auto;
+        }
+        .content_text{
+            padding-top:30px;
+            width: 600px;
+            height: 200px;
+            float: left;
+        }
+        .content_text  textarea{
+            width: 596px;
+            height: 199px;
+            border: none;
+            border: 1px  solid slategray;
+            outline: none;
+            background: url('img/timg (7).jpg') ;
+            background-size:600px 200px;
+            color:slategray;
+        }
+        .content_btn{
+            margin-top:10px;
+            width: 600px;
+            height: 50px;
+            border: 1px solid slategray;
+            background: pink;
+            float: left;
+        }
+        .content_btn input{
+            float: left;
+            width: 50%;
+            height: 100%;
+            outline: none;
+            border: none;
+            background: none;
+            font-size: 18px;
+            color: white;
+        }
+        #dCon{
+            width: 100%;
+            float: left;
+            margin:0px 0px 30px;
+            border: 1px solid palegoldenrod;
+            background-color: palegoldenrod;
+        }
+
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        //刷新界面以后，localstorage的内容还在
+        $(function(){
+            if(localStorage.getItem('key_con')!=null){
+                'key_con',$('#dCon').html(localStorage.getItem('key_con'))
+            }
+        });
+        function  PostCon(){
+            var sCon = $("#trCon").val();
+            $("#dCon").append('<div>'+sCon+'</div>')//把文本里输入的东西追加到新的div里面
+            localStorage.setItem('key_con',$('#dCon').html())
+        }
+        function CleanCon(){
+            $('#dCon').html('')
+            localStorage.clear()
+        }
+    </script>
+</head>
+<body>
+    <div class='content'>
+        <div class='content_text'>
+            <textarea name="" id="trCon" ></textarea>
+        </div>
+        <div class='content_btn'>
+            <input type="button" value="发表" onClick="PostCon()" style="border-right:1px solid slategray"> 
+            <input type="button" value="清除" onClick='CleanCon()'>
+        </div>
+        <div id="dCon"></div>
+    </div>
+</body>
+</html>
